@@ -1,29 +1,21 @@
 import masks
 
-def mask_account_card(number_card_or_account:str) -> str:
+
+def mask_account_card(number_card_or_account: str) -> str:
     """Функция обрабатывает информацию о картах и о счетах"""
-    split_string:list[str] = number_card_or_account.split()
+    split_string: list[str] = number_card_or_account.split()
     if split_string[0] == "Счет":
-        masked_number:str = masks.get_mask_account(split_string[-1])
+        masked_number: str = masks.get_mask_account(split_string[-1])
     else:
-        masked_number:str = masks.get_mask_card_number(split_string[-1])
+        masked_number = masks.get_mask_card_number(split_string[-1])
     split_string[-1] = masked_number
-    result:str = " ".join(split_string)
+    result: str = " ".join(split_string)
     return result
 
-first_test = "Visa Platinum 7000792289606361"
-first_test_result = mask_account_card(first_test)
-print(first_test)
-print(first_test_result)
-print()
+def get_date(full_date:str) -> str:
+    """Функция обработки даты в формат ДЕНЬ.МЕСЯЦ.ГОД"""
+    result:str = f"{full_date[8:10]}.{full_date[5:7]}.{full_date[:4]}"
+    return result
 
-second_test = "Maestro 7000792289606361"
-second_test_result = mask_account_card(second_test)
-print(second_test)
-print(second_test_result)
-print()
-
-third_test = "Счет 73654108430135874305"
-third_test_result = mask_account_card(third_test)
-print(third_test)
-print(third_test_result)
+print(mask_account_card("Visa Classic 6831982476737658"))
+print(get_date("2024-03-11T02:26:18.671407"))

@@ -12,10 +12,8 @@ def mask_account_card(number_card_or_account: str) -> str:
     result: str = " ".join(split_string)
     return result
 
-def get_date(full_date:str) -> str:
-    """Функция обработки даты в формат ДЕНЬ.МЕСЯЦ.ГОД"""
-    result:str = f"{full_date[8:10]}.{full_date[5:7]}.{full_date[:4]}"
-    return result
 
-print(mask_account_card("Visa Classic 6831982476737658"))
-print(get_date("2024-03-11T02:26:18.671407"))
+def get_date(full_date: str) -> str:
+    """Функция обработки даты в формат ДЕНЬ.МЕСЯЦ.ГОД"""
+    result: str = f"{full_date[8:10]}.{full_date[5:7]}.{full_date[:4]}"
+    return result

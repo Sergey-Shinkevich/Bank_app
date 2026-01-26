@@ -11,6 +11,6 @@ def filter_by_state(list_dict: list[dict], state: str = "EXECUTED") -> list[dict
 
 
 def sort_by_date(list_dict: list[dict], up_down: bool = True) -> list[dict]:
-    """Функцию сортировки списка словарей по дате. Для направления сортировки - параметр up_down"""
+    """Функцию сортировки списка словарей по дате. Для направления сортировки создан параметр up_down"""
     result = sorted(list_dict, key=lambda list_dict: list_dict["date"], reverse=up_down)
     return result

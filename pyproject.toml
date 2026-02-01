@@ -43,3 +43,6 @@ exclude = '(\.git)'
 # максимальная длина строки
 line_length = 119
 
+[pytest]
+norecursedirs = 'main.py'
+

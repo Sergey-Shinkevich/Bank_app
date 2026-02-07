@@ -26,9 +26,9 @@ def transaction_descriptions(trans: list[dict]) -> Iterator:
                 yield "Не корректное наименование операции"
 
 
-def card_number_generator(first_number: int, last_number: int) -> Iterator:
+def card_number_generator(start: int, stop: int) -> Iterator:
     """Функция-генератор номеров банковских карт"""
-    long_string = [(16 - len(str(x))) * "0" + str(x) for x in range(first_number, last_number + 1)]
+    long_string = [(16 - len(str(x))) * "0" + str(x) for x in range(start, stop + 1)]
     result = ((" ".join(number[i: i + 4] for i in range(0, len(number), 4))) for number in long_string)
     for card in result:
         yield card

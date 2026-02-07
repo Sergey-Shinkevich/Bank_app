@@ -14,6 +14,7 @@ def filter_by_currency(trans: list[dict], curr: str = "USD") -> Iterator:
 
 
 def transaction_descriptions(trans: list[dict]) -> Iterator:
+    """Функция возвращает описание каждой операции по очереди"""
     if len(trans) == 0:
         yield "Пустой список"
     else:
@@ -26,6 +27,7 @@ def transaction_descriptions(trans: list[dict]) -> Iterator:
 
 
 def card_number_generator(first_number: int, last_number: int) -> Iterator:
+    """Функция-генератор номеров банковских карт"""
     long_string = [(16 - len(str(x))) * "0" + str(x) for x in range(first_number, last_number + 1)]
     result = ((" ".join(number[i: i + 4] for i in range(0, len(number), 4))) for number in long_string)
     for card in result:

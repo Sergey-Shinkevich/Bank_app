@@ -1,7 +1,7 @@
 from mypy.binder import Iterator
 
 
-def filter_by_currency(trans: list[dict], curr: str="USD") -> Iterator:
+def filter_by_currency(trans: list[dict], curr: str = "USD") -> Iterator:
     """Генератор транзакций по фильтру валюты"""
     # Проверка на пустой список
     if len(trans) == 0:
@@ -12,7 +12,8 @@ def filter_by_currency(trans: list[dict], curr: str="USD") -> Iterator:
             if item["operationAmount"]["currency"]["name"] == curr:
                 yield item
 
-def transaction_descriptions(trans: list[dict]) -> str:
+
+def transaction_descriptions(trans: list[dict]) -> Iterator:
     if len(trans) == 0:
         yield "Пустой список"
     else:
@@ -22,3 +23,10 @@ def transaction_descriptions(trans: list[dict]) -> str:
                 yield item["description"]
             else:
                 yield "Не корректное наименование операции"
+
+
+def card_number_generator(first_number: int, last_number: int) -> Iterator:
+    long_string = [(16 - len(str(x))) * "0" + str(x) for x in range(first_number, last_number + 1)]
+    result = ((" ".join(number[i: i + 4] for i in range(0, len(number), 4))) for number in long_string)
+    for card in result:
+        yield card

@@ -1,24 +1,23 @@
-import time
 from functools import wraps
 
 
 def log(file=None):
-    """Декоратор указывает время начала работы функции, окончания работы функций,
-    названия функции, аргументов и результатов выполнения"""
+    """Декоратор указывает название функции, аргументов и результатов выполнения"""
 
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
             try:
-                log_info = f"{time.ctime()} Запуск {func.__name__}({args}, {kwargs}) - OK\n"
+                log_info = f"Запуск {func.__name__}({args}, {kwargs}) - OK\n"
                 output_log(log_info)
                 result = func(*args, **kwargs)
-                log_info = f"{time.ctime()} Окончание {func.__name__}({args}, {kwargs}) - {result} OK\n"
+                log_info = f"Окончание {func.__name__}({args}, {kwargs}) - {result} - OK\n"
                 output_log(log_info)
                 return result
             except Exception as e:
-                log_info = f"{time.ctime()} Ошибка {func.__name__} error: {e}. Inputs {args}, {kwargs}\n"
+                log_info = f"Ошибка {func.__name__} error: {e}. Inputs {args}, {kwargs}\n"
                 output_log(log_info)
+                raise
 
         def output_log(log_info):
             """Вспомогательная функция для вывода на экран или в консоль"""

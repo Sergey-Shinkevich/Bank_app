@@ -1,6 +1,8 @@
+from src.decorators import log
 from src.masks import get_mask_account, get_mask_card_number
 
 
+@log(file="mylog.txt")
 def check_date_format(full_date: str) -> bool:
     """Функция проверки правильности формата даты"""
     if len(full_date) == 26:
@@ -36,6 +38,7 @@ def check_date_format(full_date: str) -> bool:
     return result
 
 
+@log(file="mylog.txt")
 def mask_account_card(number_card_or_account: str) -> str:
     """Функция обрабатывает информацию о картах и о счетах"""
     incorrect = "Не правильное название карты / счета"
@@ -64,6 +67,7 @@ def mask_account_card(number_card_or_account: str) -> str:
     return result
 
 
+@log(file="mylog.txt")
 def get_date(full_date: str) -> str:
     """Функция обработки даты в формат ДЕНЬ.МЕСЯЦ.ГОД"""
     if check_date_format(full_date):

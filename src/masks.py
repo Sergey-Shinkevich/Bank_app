@@ -1,3 +1,7 @@
+from src.decorators import log
+
+
+@log(file="mylog.txt")
 def get_mask_card_number(card_number: str | int) -> str:
     """Функция принимает на вход номер карты и возвращает ее маску."""
     card_number_str: str = str(card_number)
@@ -8,6 +12,7 @@ def get_mask_card_number(card_number: str | int) -> str:
     return result
 
 
+@log(file="mylog.txt")
 def get_mask_account(account_number: str | int) -> str:
     """Функция принимает на вход номер счета и возвращает его маску."""
     account_number_str: str = str(account_number)

@@ -1,6 +1,8 @@
+from src.decorators import log
 from src.widget import check_date_format
 
 
+@log(file="mylog.txt")
 def check_list_dict(list_dict: list[dict]) -> bool:
     """Проверка целостности данных в списке словарей"""
     if not list_dict:
@@ -24,6 +26,7 @@ def check_list_dict(list_dict: list[dict]) -> bool:
     return True
 
 
+@log(file="mylog.txt")
 def filter_by_state(list_dict: list[dict], state: str = "EXECUTED") -> list[dict] | str:
     """
     Функция возвращает новый список словарей, содержащий только те словари,
@@ -39,6 +42,7 @@ def filter_by_state(list_dict: list[dict], state: str = "EXECUTED") -> list[dict
     return result
 
 
+@log(file="mylog.txt")
 def sort_by_date(list_dict: list[dict], up_down: bool = False) -> list[dict] | str:
     """Функцию сортировки списка словарей по дате. Для направления сортировки создан параметр up_down"""
     if check_list_dict(list_dict):

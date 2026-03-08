@@ -16,6 +16,11 @@ def test_read_json_fake_content():
         mock_load.return_value = {"key": "value"}
         assert read_json("fake_content.json") == []
 
+def test_read_json_entry_list():
+    """Проверка на пустой список в JSON-файле"""
+    with patch("json.load") as mock_load:
+        mock_load.return_value = []
+        assert read_json("fake_content.json") == []
 
 def test_read_json_normal_content():
     """Проверка на не JSON-файл"""

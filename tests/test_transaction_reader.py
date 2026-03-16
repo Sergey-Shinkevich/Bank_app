@@ -1,11 +1,11 @@
-from unittest.mock import MagicMock, patch
-
+from unittest.mock import MagicMock, patch, mock_open
 
 from src.transaction_reader import csv_read_to_dict, excel_read_to_dict
 
 
+@patch("builtins.open", new_callable=mock_open)
 @patch("src.transaction_reader.csv.DictReader")
-def test_csv_to_dict_normal(mock_read):
+def test_csv_to_dict_normal(mock_read, mock_file):
     """Тест на нормальное выполнение функции"""
     fake = [
         {

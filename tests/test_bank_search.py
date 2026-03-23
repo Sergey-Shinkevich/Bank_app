@@ -1,10 +1,9 @@
-import pytest
 from src.bank_search import process_bank_search
 
 
-def test_process_bank_search_normal (normal_list_dict_currency):
+def test_process_bank_search_normal(normal_list_dict_currency):
     """Проверка работы функции на нормальные данные"""
-    assert process_bank_search(normal_list_dict_currency, 'Перевод организации') == [
+    assert process_bank_search(normal_list_dict_currency, "Перевод организации") == [
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -22,15 +21,18 @@ def test_process_bank_search_normal (normal_list_dict_currency):
             "description": "Перевод организации",
             "from": "Visa Platinum 1246377376343588",
             "to": "Счет 14211924144426031657",
-        }
+        },
     ]
-def test_process_bank_search_empty_data ():
-    """Проверка работы функции на пустые данные"""
-    assert process_bank_search([], 'Перевод организации') == []
 
-def test_process_bank_search_abnormal (abnormal2_list_dict_currency):
+
+def test_process_bank_search_empty_data():
+    """Проверка работы функции на пустые данные"""
+    assert process_bank_search([], "Перевод организации") == []
+
+
+def test_process_bank_search_abnormal(abnormal2_list_dict_currency):
     """Проверка работы функции на неполные данные"""
-    assert process_bank_search(abnormal2_list_dict_currency, 'Перевод организации') == [
+    assert process_bank_search(abnormal2_list_dict_currency, "Перевод организации") == [
         {
             "id": 594226727,
             "state": "CANCELED",

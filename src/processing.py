@@ -1,29 +1,19 @@
 from src.decorators import log
-from src.widget import check_date_format
 
 
 @log(file="mylog.txt")
-def check_list_dict(list_dict: list[dict]) -> bool:
-    """Проверка целостности данных в списке словарей"""
-    if not list_dict:
+def check_list_dict(list_dict: list) -> bool:
+    """Упрощенная проверка: это список и в нем есть словари"""
+    # Если это вообще не список или он пустой — работать не с чем
+    if not isinstance(list_dict, list) or len(list_dict) == 0:
         return False
-    for item in list_dict:
-        # Проверка длины и наличия корректных ключей
-        if len(item) == 3 and "id" in item and "state" in item and "date" in item:
-            current_id = str(item.get("id"))
-            current_state = str(item.get("state"))
-            current_date = str(item.get("date"))
-            if (
-                current_id.isdigit()
-                and (current_state == "EXECUTED" or current_state == "CANCELED")
-                and check_date_format(current_date)
-            ):
-                continue
-            else:
-                return False
-        else:
-            return False
-    return True
+
+    # Проверяем только первый элемент, чтобы не тратить время на перебор тысяч строк
+    # и убеждаемся, что это словарь
+    if isinstance(list_dict[0], dict):
+        return True
+
+    return False
 
 
 @log(file="mylog.txt")

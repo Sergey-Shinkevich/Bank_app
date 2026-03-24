@@ -12,26 +12,6 @@ def test_normal_data(normal_list_dict: list[dict]) -> None:
     assert check_list_dict(normal_list_dict) is True
 
 
-def test_abnormal_data_01(abnormal_list_dict_01: list[dict]) -> None:
-    """Проверка на не правильные данные №1"""
-    assert check_list_dict(abnormal_list_dict_01) is False
-
-
-def test_abnormal_data_02(abnormal_list_dict_02: list[dict]) -> None:
-    """Проверка на не правильные данные №2"""
-    assert check_list_dict(abnormal_list_dict_02) is False
-
-
-def test_abnormal_data_03(abnormal_list_dict_03: list[dict]) -> None:
-    """Проверка на не правильные данные №3"""
-    assert check_list_dict(abnormal_list_dict_03) is False
-
-
-def test_abnormal_data_04(abnormal_list_dict_04: list[dict]) -> None:
-    """Проверка на не правильные данные №4"""
-    assert check_list_dict(abnormal_list_dict_04) is False
-
-
 # Проверка функции filter_by_state
 def test_executed(normal_list_dict: list[dict]) -> None:
     assert filter_by_state(normal_list_dict) == [

@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock, patch, mock_open
+from unittest.mock import MagicMock, mock_open, patch
 
 from src.transaction_reader import csv_read_to_dict, excel_read_to_dict
 

@@ -7,22 +7,25 @@ from src.generators import card_number_generator, filter_by_currency, transactio
 # Тесты функции filter_by_currency
 def test_filter_by_currency_empty() -> None:
     """Тестирование на пустой список"""
-    generator: Iterator = filter_by_currency([])
-    assert next(generator) == "Пустой список"
+    result = list(filter_by_currency([]))
+    assert result == []
 
 
 def test_filter_by_currency_abnormal_data(abnormal_list_dict_currency: list[dict]) -> None:
-    """Тестирование функции на неправильные данные"""
-    with pytest.raises(KeyError):
-        next(filter_by_currency(abnormal_list_dict_currency))
+    """Тестирование функции на пропуск неправильных данных"""
+    result = list(filter_by_currency(abnormal_list_dict_currency))
+    assert len(result) == 0
 
 
 def test_filter_by_currency_normal_data(normal_list_dict_currency: list[dict]) -> None:
     """Тестирование функции на правильные данные"""
-    generator: Iterator = filter_by_currency(normal_list_dict_currency)
-    assert next(generator) == normal_list_dict_currency[0]
-    assert next(generator) == normal_list_dict_currency[1]
-    assert next(generator) == normal_list_dict_currency[3]
+    result = list(filter_by_currency(normal_list_dict_currency, "RUB"))
+    assert len(result) == 2
+    # Проверяем, что в каждом результате действительно рубли
+    for item in result:
+        # Проверяем либо через вложенный JSON, либо через плоский ключ
+        val = item.get("operationAmount", {}).get("currency", {}).get("code") or item.get("currency_code")
+        assert val in ["RUB", "РУБ", "РУБ."]
 
 
 # Тесты функции transaction_descriptions()

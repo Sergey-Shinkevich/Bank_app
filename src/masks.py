@@ -5,7 +5,7 @@ from src.decorators import log
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    filename="../logs/masks.log",
+    filename="logs/masks.log",
     filemode="w",
     encoding="utf-8",
 )
